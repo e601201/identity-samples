@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The "auth" DataStore holds the session ID and signed-in state. Exclude it so a restored
+    install starts signed out and signs back in with the Restore Credential instead.
+    https://developer.android.com/identity/sign-in/restore-credentials
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="datastore/auth.preferences_pb" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="file" path="datastore/auth.preferences_pb" />
+    </device-transfer>
+</data-extraction-rules>

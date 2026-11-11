@@ -35,6 +35,10 @@ val keystorePropertiesFile: File = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
+// Server domain. Override to use your own server, e.g. -PshrineServerDomain=example.com
+val serverDomain = providers.gradleProperty("shrineServerDomain")
+    .getOrElse("project-sesame-426206.appspot.com")
+
 android {
     namespace = "com.authentication.shrine"
     compileSdk = 35
@@ -48,8 +52,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        buildConfigField("String", "API_BASE_URL", "\"https://project-sesame-426206.appspot.com/\"")
-        buildConfigField("String", "API_BASE_DOMAIN", "\"project-sesame-426206.appspot.com\"")
+        buildConfigField("String", "API_BASE_URL", "\"https://$serverDomain/\"")
+        buildConfigField("String", "API_BASE_DOMAIN", "\"$serverDomain\"")
     }
 
     signingConfigs {
